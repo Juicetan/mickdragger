@@ -4,7 +4,7 @@ A vanilla JavaScript library to allow for element dragging and drag threshold no
 
 MickDragger helps you enable any element to be draggable and notifies you when that element has been dragged past a defined threshold.  There is also a configurable activation threshold so that the element won't start moving until a defined drag distance has been detected.  This will decrease the amount of accidental drags.
 
-MickDragger also confines dragging along the horizontal/vertical axis.  When the drag activation threshold has been met, largest horizontal/vertical component will determine the drag axis.
+MickDragger also confines dragging along the horizontal/vertical axis.  When the drag activation threshold has been met, the largest horizontal/vertical component will determine the drag axis.
 
 ## Getting Started
 
