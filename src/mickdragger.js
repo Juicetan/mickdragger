@@ -157,6 +157,10 @@
   MickDragger.HORIZONTAL = MickDragger.prototype.HORIZONTAL = 'horizontal';
   MickDragger.ACTIVATIONTHRESHOLD = MickDragger.prototype.ACTIVATIONTHRESHOLD = 20;
   MickDragger.ACTIONTHRESHOLD = MickDragger.prototype.ACTIONTHRESHOLD = 80;
+  MickDragger.event = MickDragger.prototype.event = {
+    THRESHOLD: 'actionThreshold',
+    DRAG: 'drag'
+  };
 
   window.MickDragger = MickDragger;
 })(window, document);
