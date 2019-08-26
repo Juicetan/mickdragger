@@ -10,29 +10,29 @@ MickDragger also confines dragging along the horizontal/vertical axis.  When the
 
 1. Fetch the plugin
 
-  The plugin is available using the [Node Package Manager(npm)](https://www.npmjs.com/package/mickdragger)
+   The plugin is available using the [Node Package Manager(npm)](https://www.npmjs.com/package/mickdragger)
     
-  ```shell
-  $ npm install mickdragger --save
-  ```
+   ```shell
+   $ npm install mickdragger --save
+   ```
 
 2. Include plugin script
   
-  ```html
-  <script src="node_modules/mickdragger/src/mickdragger.js"></script>
-  ```
+   ```html
+   <script src="node_modules/mickdragger/src/mickdragger.js"></script>
+   ```
 
 3. Create a instance of MickDragger with DOM element
 
-  ```javascript
-  var $dragEl = document.querySelector('.drag');
-  var mickDragger = new MickDragger($dragEl);
-  ```
+   ```javascript
+   var $dragEl = document.querySelector('.drag');
+   var mickDragger = new MickDragger($dragEl);
+   ```
 
 4.  Add event listener
 
-  ```javascript
-  mickDragger.on(MickDragger.event.THRESHOLD, function(){
-    // do awesome things
-  });
-  ```
+   ```javascript
+   mickDragger.on(MickDragger.event.THRESHOLD, function(){
+     // do awesome things
+   });
+   ```
