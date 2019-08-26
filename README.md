@@ -29,10 +29,10 @@ MickDragger also confines dragging along the horizontal/vertical axis.  When the
    var mickDragger = new MickDragger($dragEl);
    ```
 
-4.  Add event listener
+4. Add event listener
 
-    ```javascript
-    mickDragger.on(MickDragger.event.THRESHOLD, function(){
-      // do awesome things
-    });
-    ```
+   ```javascript
+   mickDragger.on(MickDragger.event.THRESHOLD, function(){
+     // do awesome things
+   });
+   ```
