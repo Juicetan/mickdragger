@@ -42,8 +42,15 @@
       .container .header {
         padding-top: 60px;
       }
+      .container .desc {
+        width: 88%;
+        margin-left: 6%;
+      }
       .container .npm img{
         width: 100%;
+      }
+      .container .drag-boundary{
+        width: 100px;
       }
     }
     @media (max-width: 358px){
@@ -64,11 +71,11 @@
     }
     .drag-boundary{
       border: 4px dashed white;
-      padding: 50px;
+      padding: 80px;
       margin-left: auto;
       margin-right: auto;
       width: 300px;
-      margin-top: 50px;
+      margin-top: 10px;
     }
     .drag-boundary .drag{
       background-color: white;
@@ -84,6 +91,20 @@
     .drag-boundary .drag:hover{
       opacity: 0.9;
     }
+    pre{
+      overflow-y: auto;
+    }
+    .action-hit{
+      font-weight: bold;
+      text-align: center;
+      font-size: 30px;
+      margin-top: 10px;
+      opacity: 0;
+      transition: opacity 0.1 linear;
+    }
+    .action-hit.active{
+      opacity: 1;
+    }
 
     .github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
   </style>
@@ -97,14 +118,32 @@
         A vanilla JavaScript library to allow for element dragging and drag threshold notification.
       </div>
     </div>
+    <div class="action-hit">THRESHOLD MET</div>
     <div class="drag-boundary">
       <div class="drag">DRAG ME</div>
     </div>
+    <div class="desc">
+      <pre>
+var $dragEl = document.querySelector('.drag-boundary .drag');
+var mickDragger = new MickDragger($dragEl);
+
+mickDragger.on(MickDragger.event.THRESHOLD, function(){
+  // do awesome things
+});
+      </pre>
+      <p>
+        MickDragger helps you enable any element to be draggable and notifies you when that element has been dragged past a defined threshold.  There is also a configurable activation threshold so that the element won't start moving until a defined drag distance has been detected.  This will decrease the amount of accidental drags.
+      </p>
+      <p>
+        MickDragger also confines dragging along the horizontal/vertical axis.  When the drag activation threshold has been met, largest horizontal/vertical component will determine the drag axis.
+      </p>
+    </div>
     <div class="github">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
+      <a class="github-button" href="https://github.com/juicetan" aria-label="Follow @juicetan on GitHub">Follow @juicetan</a>
+      <a class="github-button" href="https://github.com/juicetan/mickdragger/archive/master.zip" data-icon="octicon-cloud-download" data-size="large" aria-label="Download juicetan/mickdragger on GitHub">Download</a>
+      <a class="github-button" href="https://github.com/juicetan/mickdragger/subscription" data-icon="octicon-eye" data-size="large" data-show-count="true" aria-label="Watch juicetan/mickdragger on GitHub">Watch</a>
+      <a class="github-button" href="https://github.com/juicetan/mickdragger" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star juicetan/mickdragger on GitHub">Star</a>
+      <a class="github-button" href="https://github.com/juicetan/mickdragger/fork" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork juicetan/mickdragger on GitHub">Fork</a>
     </div>
     <div class="npm">
       <a href="https://nodei.co/npm/mickdragger/"><img src="https://nodei.co/npm/mickdragger.png?downloads=true&amp;downloadRank=true&amp;stars=true"></a>
@@ -114,7 +153,15 @@
   <script src="src/mickdragger.js"></script>
   <script>
     var $dragEl = document.querySelector('.drag-boundary .drag');
+    var $active = document.querySelector('.action-hit');
     var mickDragger = new MickDragger($dragEl);
+    mickDragger.on(MickDragger.event.THRESHOLD, function(){
+      $active.classList.add('active');
+      setTimeout(function(){
+        $active.classList.remove('active');
+        mickDragger.resetPosition();
+      },800);
+    });
   </script>
 </body>
 </html>
