@@ -11,9 +11,10 @@ MickDragger also confines dragging along the horizontal/vertical axis.  When the
 1. Fetch the plugin
 
   The plugin is available using the [Node Package Manager(npm)](https://www.npmjs.com/package/mickdragger)
-    ```shell
-    $ npm install mickdragger --save
-    ```
+    
+  ```shell
+  $ npm install mickdragger --save
+  ```
 
 2. Include plugin script
   
