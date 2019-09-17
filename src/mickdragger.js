@@ -1,9 +1,10 @@
 ;(function(window, document, undefined){
   function MickDragger(el,opts){
+    opts = opts || {};
     this.$el = el;
     this.clearMem();
-    this.activationThreshold = MickDragger.ACTIVATIONTHRESHOLD;
-    this.actionThreshold = MickDragger.ACTIONTHRESHOLD;
+    this.activationThreshold = opts.activationThreshold || MickDragger.ACTIVATIONTHRESHOLD;
+    this.actionThreshold = opts.actionThreshold || MickDragger.ACTIONTHRESHOLD;
     this.callbackMap = {
       drag: [],
       actionThreshold: []
