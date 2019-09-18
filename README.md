@@ -43,6 +43,7 @@ MickDragger also allows you to confine dragging along the horizontal/vertical ax
 Constructor for MickDragger instance.
 
 Parameters:
+
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | domElement | `HTMLElement` | DOM element to apply draggability and even listeners. |
@@ -52,6 +53,7 @@ Parameters:
 Registers for library callback notifications on MickDragger instances.
 
 Parameters:
+
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | eventName | `string` | Name of event to register to. |
@@ -65,7 +67,7 @@ Parameters:
 | ---- | ------- | ----------- |
 | activationThreshold | `20` | Threshold of drag distance before beginning to physically move element.  This helps to prevent accidental drags. |
 | actionThreshold | `80` | Threshold of drag distance before callback notification is triggered |
-| slideDirection | `vertical|horizontal` | Configuration for permitted dragging direction. |
+| slideDirection | `vertica\|horizontal` | Configuration for permitted dragging direction. |
 
 ## Constants
 
