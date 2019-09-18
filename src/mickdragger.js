@@ -5,6 +5,7 @@
     this.clearMem();
     this.activationThreshold = opts.activationThreshold || MickDragger.ACTIVATIONTHRESHOLD;
     this.actionThreshold = opts.actionThreshold || MickDragger.ACTIONTHRESHOLD;
+    this.slideDirection = opts.slideDirection || MickDragger.VERTICALHORIZONTAL;
     this.callbackMap = {
       drag: [],
       actionThreshold: []
@@ -34,17 +35,25 @@
         console.log('> activated');
         view.isDragging = true;
         view.notifyDragCallbacks(true);
-        if(diffX > diffY){
-          view.direction = MickDragger.HORIZONTAL;
+
+        if(view.slideDirection === MickDragger.VERTICALHORIZONTAL){
+          if(diffX > diffY){
+            view.direction = MickDragger.HORIZONTAL;
+          } else if(diffX < diffY){
+            view.direction = MickDragger.VERTICAL;
+          }
         } else{
-          view.direction = MickDragger.VERTICAL;
+          view.direction = view.slideDirection;
         }
       } else if(view.fingerDown && view.isDragging){
         console.log('> execute move');
         view.moveEl(view.curX - view.startX, view.curY - view.startY);
+        
         if(view.direction === MickDragger.HORIZONTAL && diffX > view.actionThreshold){
           view.actionHit = true;
         } else if(view.direction === MickDragger.VERTICAL && diffY > view.actionThreshold){
+          view.actionHit = true;
+        } else if(view.direction === MickDragger.OMNIDIRECTIONAL && (diffX > view.actionThreshold || diffY > view.actionThreshold)){
           view.actionHit = true;
         } else{
           view.actionHit = false;
@@ -61,6 +70,7 @@
       
       if(view.actionHit){
         view.notifyCallbacks();
+        view.actionHit = false;
       } else{
         view.resetPosition();
       }
@@ -73,6 +83,7 @@
 
   MickDragger.prototype = {
     clearMem: function(){
+      this.actionHit = false;
       this.fingerDown = false;
       this.startX = null;
       this.startY = null
@@ -111,6 +122,9 @@
         this.translateY = this.translateY;
       } else if(this.direction === MickDragger.VERTICAL){
         this.translateX = this.translateX;
+        this.translateY = deltaY;
+      } else if(this.direction === MickDragger.OMNIDIRECTIONAL){
+        this.translateX = deltaX;
         this.translateY = deltaY;
       }
       this.$el.style.transform = 'translate3d('+this.translateX+'px,'+this.translateY+'px,0)';
@@ -156,6 +170,8 @@
 
   MickDragger.VERTICAL = MickDragger.prototype.VERTICAL = 'vertical';
   MickDragger.HORIZONTAL = MickDragger.prototype.HORIZONTAL = 'horizontal';
+  MickDragger.VERTICALHORIZONTAL = MickDragger.prototype.VERTICALHORIZONTAL = 'vertical|horizontal';
+  MickDragger.OMNIDIRECTIONAL = MickDragger.prototype.OMNIDIRECTIONAL = 'omnidirectional';
   MickDragger.ACTIVATIONTHRESHOLD = MickDragger.prototype.ACTIVATIONTHRESHOLD = 20;
   MickDragger.ACTIONTHRESHOLD = MickDragger.prototype.ACTIONTHRESHOLD = 80;
   MickDragger.event = MickDragger.prototype.event = {
