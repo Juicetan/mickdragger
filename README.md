@@ -40,6 +40,7 @@ MickDragger also allows you to confine dragging along the horizontal/vertical ax
 ## API
 
 **new MickDragger(domElement[, options])**
+
 Constructor for MickDragger instance.
 
 Parameters:
@@ -50,6 +51,7 @@ Parameters:
 | options | `Object` | **Optional** configuration object. |
 
 **.on(eventName, callbackFunction)**
+
 Registers for library callback notifications on MickDragger instances.
 
 Parameters:
