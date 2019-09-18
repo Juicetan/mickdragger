@@ -135,7 +135,7 @@ mickDragger.on(MickDragger.event.THRESHOLD, function(){
         MickDragger helps you enable any element to be draggable and notifies you when that element has been dragged past a defined threshold.  There is also a configurable activation threshold so that the element won't start moving until a defined drag distance has been detected.  This will decrease the amount of accidental drags.
       </p>
       <p>
-        MickDragger also confines dragging along the horizontal/vertical axis.  When the drag activation threshold has been met, the largest horizontal/vertical component will determine the drag axis.
+        MickDragger also allows you to confine dragging along the horizontal/vertical axis.  When the drag activation threshold has been met, the largest horizontal/vertical component will determine the drag axis.  Alternatively you can limit its movement only on the vertical axis or only on the horizontal axis and of course you can also allow for full omnidirectional movement.
       </p>
     </div>
     <div class="github">
@@ -154,7 +154,10 @@ mickDragger.on(MickDragger.event.THRESHOLD, function(){
   <script>
     var $dragEl = document.querySelector('.drag-boundary .drag');
     var $active = document.querySelector('.action-hit');
-    var mickDragger = new MickDragger($dragEl);
+    var mickDragger = new MickDragger($dragEl,{
+        activationThreshold: 0,
+        slideDirection: MickDragger.OMNIDIRECTIONAL
+      });
     mickDragger.on(MickDragger.event.THRESHOLD, function(){
       $active.classList.add('active');
       setTimeout(function(){
