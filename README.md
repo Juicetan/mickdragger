@@ -69,7 +69,7 @@ Parameters:
 | ---- | ------- | ----------- |
 | activationThreshold | `20` | Threshold of drag distance before beginning to physically move element.  This helps to prevent accidental drags. |
 | actionThreshold | `80` | Threshold of drag distance before callback notification is triggered |
-| slideDirection | `vertica\|horizontal` | Configuration for permitted dragging direction. |
+| slideDirection | `vertical\|horizontal` | Configuration for permitted dragging direction. |
 
 ## Constants
 
@@ -77,7 +77,7 @@ Parameters:
 | ---- | ------- | ----------- |
 | VERTICAL | `vertical` | Directional slide option for vertical movement. |
 | HORIZONTAL | `horizontal` | Directional slide option for horizontal movement. |
-| VERTICALHORIZONTAL | `vertical|horizontal` | Directional slide option for strict vertical/horizontal movement. |
+| VERTICALHORIZONTAL | `vertical\|horizontal` | Directional slide option for strict vertical/horizontal movement. |
 | OMNIDIRECTIONAL | `omnidirectional` | Directional slide option for omnidirectional movement. |
 | ACTIVATIONTHRESHOLD | `20` | Default activation threshold. |
 | ACTIONTHRESHOLD | `80` | Default action threshold. |
