@@ -6,6 +6,8 @@
     this.activationThreshold = opts.activationThreshold || MickDragger.ACTIVATIONTHRESHOLD;
     this.actionThreshold = opts.actionThreshold || MickDragger.ACTIONTHRESHOLD;
     this.slideDirection = opts.slideDirection || MickDragger.VERTICALHORIZONTAL;
+    this.stopPropagation = opts.stopPropagation || false;
+    this.verbose = opts.verbose || false;
     this.callbackMap = {
       drag: [],
       actionThreshold: []
@@ -13,10 +15,13 @@
     
     var view = this;
     this.elStart = function(e){
-      e.stopPropagation();
-      e.preventDefault();
-
-      console.log('> start', e);
+      if(view.stopPropagation){
+        e.stopPropagation();
+        e.preventDefault();
+      }
+      
+      if(view.verbose)
+        console.log('> start', e);
       view.clearMem();
       view.fingerDown = true;
       e = MickDragger.resolveTelemetry(e);
@@ -32,7 +37,8 @@
       var diffY = Math.abs(view.curY - view.startY);
       
       if(view.fingerDown && !view.isDragging && (diffX >= view.activationThreshold || diffY >= view.activationThreshold)){
-        console.log('> activated');
+        if(view.verbose)
+          console.log('> activated');
         view.isDragging = true;
         view.notifyDragCallbacks(true);
 
@@ -46,7 +52,8 @@
           view.direction = view.slideDirection;
         }
       } else if(view.fingerDown && view.isDragging){
-        console.log('> execute move');
+        if(view.verbose)
+          console.log('> execute move');
         view.moveEl(view.curX - view.startX, view.curY - view.startY);
         
         if(view.direction === MickDragger.HORIZONTAL && diffX > view.actionThreshold){
@@ -61,7 +68,8 @@
       }
     };
     this.elStop = function(evt){
-      console.log('> end', evt);
+      if(view.verbose)
+        console.log('> end', evt);
       var e = MickDragger.resolveTelemetry(evt);
       view.endX = e.clientX;
       view.endY = e.clientY;
