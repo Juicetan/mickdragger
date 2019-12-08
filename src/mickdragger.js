@@ -20,8 +20,9 @@
         e.preventDefault();
       }
       
-      if(view.verbose)
+      if(view.verbose){
         console.log('> start', e);
+      }
       view.clearMem();
       view.fingerDown = true;
       e = MickDragger.resolveTelemetry(e);
@@ -37,8 +38,9 @@
       var diffY = Math.abs(view.curY - view.startY);
       
       if(view.fingerDown && !view.isDragging && (diffX >= view.activationThreshold || diffY >= view.activationThreshold)){
-        if(view.verbose)
+        if(view.verbose){
           console.log('> activated');
+        }
         view.isDragging = true;
         view.notifyDragCallbacks(true);
 
@@ -52,8 +54,9 @@
           view.direction = view.slideDirection;
         }
       } else if(view.fingerDown && view.isDragging){
-        if(view.verbose)
+        if(view.verbose){
           console.log('> execute move');
+        }
         view.moveEl(view.curX - view.startX, view.curY - view.startY);
         
         if(view.direction === MickDragger.HORIZONTAL && diffX > view.actionThreshold){
@@ -68,8 +71,9 @@
       }
     };
     this.elStop = function(evt){
-      if(view.verbose)
+      if(view.verbose){
         console.log('> end', evt);
+      }
       var e = MickDragger.resolveTelemetry(evt);
       view.endX = e.clientX;
       view.endY = e.clientY;
