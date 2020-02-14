@@ -70,6 +70,8 @@ Parameters:
 | activationThreshold | `20` | Threshold of drag distance before beginning to physically move element.  This helps to prevent accidental drags. |
 | actionThreshold | `80` | Threshold of drag distance before callback notification is triggered |
 | slideDirection | `vertical\|horizontal` | Configuration for permitted dragging direction. |
+| stopPropagation | `true\|false` | Stops the propagation when dragging the element. |
+| verbose | `true\|false` | Print events in the console. |
 
 ## Constants
 
